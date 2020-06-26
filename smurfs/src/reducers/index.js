@@ -1,7 +1,7 @@
 import {
     FETCHING_SMURF_START,
     FETCHING_SMURF_SUCCESS
-} from "..actions";
+} from "../actions";
 
 
 const intialState = {
