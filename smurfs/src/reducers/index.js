@@ -1,35 +1,72 @@
-import {
-    FETCHING_SMURF_START,
-    FETCHING_SMURF_SUCCESS
+//====================================//
+//          IMPORT ACTIONS            //
+//====================================//
+import { 
+  GETTING_SMURF_START,
+  GETTING_SMURF_SUCCESS, 
+  GETTING_SMURF_FAILURE,
+  POST_SMURF_START,
+  POST_SMURF_SUCCESS,
+  POST_SMURF_FAILURE
 } from "../actions";
 
 
-const intialState = {
-  loading: false,
-  name: "Brainey",
-  age: "200",
-  height: "5cm",
-  id: "0",
-  isFetching: false,
-  error: "",
-};
+//====================================//
+//          INITIAL STATE             //
+//====================================//
+const initalState = {
+  smurfs: [],
+  isFetching: false, 
+  error: ""
+}
 
-export const reducer = (state = intialState, action) => {
-  switch (action.type) {
-    case FETCHING_SMURF_START:
-      return {
-        ...state,
-        isFetching: true,
-        error: "",
-      };
 
-    case FETCHING_SMURF_SUCCESS:
-      return {
-        ...state,
-        message: action.payload,
-        isFetching: false,
-      };
-    default:
-      return state;
-  }
+//====================================//
+//              REDUCER               //
+//====================================//
+export const reducer = (state = initalState, action) => {
+switch (action.type) {
+  case GETTING_SMURF_START:
+    return {
+      ...state,
+      isFetching: true,
+    };
+
+  case GETTING_SMURF_SUCCESS:
+    return {
+      ...state,
+      smurfs: action.payload,
+      isFetching: false,
+    };
+
+  case GETTING_SMURF_FAILURE:
+    return {
+      ...state,
+      isFetching: false,
+      error: action.payload,
+    };
+
+  case POST_SMURF_START:
+    return {
+      ...state,
+      isFetching: true,
+    };
+
+  case POST_SMURF_SUCCESS:
+    return {
+      ...state,
+      smurfs: action.payload,
+      isFetching: false,
+    };
+
+  case POST_SMURF_FAILURE:
+    return {
+      ...state,
+      isFetching: false,
+      error: action.payload,
+    };
+
+  default:
+    return state;
+}
 };

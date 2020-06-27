@@ -1,30 +1,36 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { getSmurf } from "../actions";
 
-const Smurfs = ({ getSmurf, name, age, isFetching, error }) => {
-    useEffect(() => {
-        getSmurf();
-    }, [getSmurf]);
+import { getSmurf, addSmurf } from "../actions/index";
+import AddSmurf from "./AddSmurf";
 
-    if(isFetching){
-        return <h2>Loading...</h2>;
-    }
-    return(
-        <div className="smurfs">
-            <h1>{name}</h1>
-            <h1>{age}</h1>
-        </div>
-    );
+const Smurfs = (props) => {
+  const getSmurfData = props.getSmurf;
+
+  useEffect(() => {
+    getSmurfData();
+  }, [getSmurfData]);
+
+  return (
+    <div>
+      <div className="smurfs">
+        {props.smurfs.map((smurfs) => (
+          <div className="smurflist" key={smurfs.id}>
+            <h2>Name: {smurfs.name}</h2>
+            <h2>Age: {smurfs.age}</h2>
+            <h2>Height: {smurfs.height}</h2>
+          </div>
+        ))}
+      </div>
+      <AddSmurf addSmurf={props.addSmurf}/>
+    </div>
+  );
 };
 
 const mapStateToProps = (state) => {
-    return{
-        name: state.name,
-        age: state.age,
-        isFetching: state.isFetching,
-        error: state.error,
-    };
+  return {
+    smurfs: state.smurfs,
+    error: state.error,
+  };
 };
-
-export default connect(mapStateToProps,{getSmurf})(Smurfs);
+export default connect(mapStateToProps, { getSmurf, addSmurf })(Smurfs);
