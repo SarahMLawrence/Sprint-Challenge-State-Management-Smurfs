@@ -9,6 +9,9 @@ export const POST_SMURF_START = "POST_SMURF_START";
 export const POST_SMURF_SUCCESS = "POST_SMURF_SUCCESS";
 export const POST_SMURF_FAILURE = "POST_SMURF_FAILURE";
 
+export const UPDATE_SMURF= "UPDATE_SMURF";
+export const TOGGLE_EDITING = "TOGGLE_EDITING";
+
 
 //============================//
 //      GET THE SMURF DATA    //
@@ -39,4 +42,14 @@ export const addSmurf = (newSmurf) => (dispatch) => {
   // .catch(err =>
   //     console.log(err);
   //     dispatch({ type: "POST_SMURF_FAILURE", payload: err });
+};
+
+export const updateSmurf = newSmurf => {
+  console.log("update title action creator");
+  return { type: UPDATE_SMURF, payload: newSmurf };
+};
+
+export const toggleEditing = () => {
+  console.log("toggle editing action creator");
+  return { type: TOGGLE_EDITING };
 };

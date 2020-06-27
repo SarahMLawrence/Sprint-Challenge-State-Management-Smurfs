@@ -22,7 +22,7 @@ const Smurfs = (props) => {
           </div>
         ))}
       </div>
-      <AddSmurf addSmurf={props.addSmurf}/>
+      <AddSmurf addSmurf={props.addSmurf} />
     </div>
   );
 };
